@@ -1,0 +1,404 @@
+% options:
+% thesis=B bachelor's thesis
+% thesis=M master's thesis
+% czech thesis in Czech language
+% slovak thesis in Slovak language
+% english thesis in English language
+% hidelinks remove colour boxes around hyperlinks
+
+\documentclass[thesis=B,czech]{FITthesis}[2012/06/26]
+
+\usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
+\usepackage{graphicx} %graphics files inclusion
+% \usepackage{amsmath} %advanced maths
+% \usepackage{amssymb} %additional math symbols
+
+\usepackage{dirtree} %directory tree visualisation
+
+% % list of acronyms
+% \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
+% \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
+% \makeglossaries
+
+\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
+\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% ODTUD DAL VSE ZMENTE
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\department{Katedra \ldots (DOPLŇTE)}
+\title{Mobilní lexikon zvířat}
+\authorGN{Minh} %(křestní) jméno (jména) autora
+\authorFN{Chu Anh} %příjmení autora
+\authorWithDegrees{Chu Anh Minh} %jméno autora včetně současných akademických titulů
+\supervisor{Josef Gattermayer}
+\acknowledgements{Děkuji mému vedoucímu bakalářské práce, že mi toto téma bakalářské práce nabídnul a byl v celou dobu vypracování k dispozici s pomocí. Také děkuji panu Ondřejovi Profantovi, správci portálu opendata.praha.eu za vyřešení vyskytlých se problémů na portále a za spolupráci s technickým vedením pražského zoo panem Jiřím Malinou, který dokázal opravit chybné prvotní datasety, vyskytující se na portále. }
+\abstractCS{Práce se zabývá vývojem mobilní aplikace, běžícím na operačním systému iOS, za pomoci hotové platformy, poskytované od třetí strany, konkrétněji od portálu opendata.praha.eu. Ma za cíl atraktivní formou prezentovat zvířata, která se vysktytují v pražske zoologické zahradě tamním návštěvníkům a následně jim pomoct se orientovat ve zdejší oblasti}
+\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\placeForDeclarationOfAuthenticity{V~Praze}
+\declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
+\keywordsCS{iOS, Swift, ZOO, Lexikon, zvířata, otevrena data, interaktivní mapa, mobilní aplikace}
+\keywordsEN{iOS, Swift, ZOO, Lexicon, animals, opendata, interactive map, mobile application}
+% \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
+
+\begin{document}
+
+% \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
+% \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+
+\begin{introduction}
+V dnešním moderním světě se bez mobilních zařízení jednoduše neobejdeme. Využíváme jej na denním pořádku a usnadňuje nám to život. K tomu, abychom mohli dosáhnout plného využití těchto zařízení, nepochybně patří i používání nejrůznějších aplikací dostupném na trhu. Naštěstí existují prostředky, které nám vývoj těchto aplikací práci velice zjednodušují. Firmám, dodávajících těchto nástrojů na vývoj je jasné, jak jsou mobilní aplikace od nejrůznějších tvůrcu důležité. Ostatně důkazem toho je, že za rok 2016 firmě Apple, tvořili aplikace a služby s tímto spojené 13\% z celkového obratu(link).  Na trhu v současné době dominují dvě platformy, na kterém běží většina zařízení, a to iOS a Android. Vzhledem k osobním zkušenostem, jak uživatelském tak i vývojářském, se v této práci zaměřím na iOS a popíšu jak dosáhnout výsledku za pomocí současných trendů a principů ve vývoji.
+Na téma  bakalářské práce jsem narazil při procházením webových stránek Ackee, firmou založenou absolventy ČVUT, která se primárně zabývá vývojem mobilními aplikacemi. Pan Josef Gattermayer zde zveřejnil článek, kde nabízel několik témat závěrečných prací, většinou točících se kolem mobilního vývoje. Vybral jsem si téma "Mobilní lexikon zvířat", která mě svojí zajímavostí nejvíce zaujala. 
+\end{introduction}
+
+\chapter{Cíl práce}
+Pražská ZOO v rámci webového portálu opendata.praha.eu, na kterém se uchovávají data ve strojově čitelném formátu, přístupných bez licenčních omezení, zveřejnila velké množství informací o tamních zvířatech.
+Cílem této práce je s pomocí technickým vedením pražské zoo a s portálem opendata.praha.eu vytvořit mobilní aplikaci Lexikon zvířat, která využívá tyto data a atraktivní formou jej přiblíží návštěvníkům všech věkových kategorií. Aplikace poběží na operačním systému iOS a bude využívat současné moderní trendy a prvky k vývoji. K dosažení cíle se nepochybně vážou tyto úkoly:
+Průzkum trhu s podobným tématem
+Prostudování a otestování funkčnosti API portálu opendata.
+Otestování datove sady, zveřejněné Pražskou zoo
+Navrhnutí wireframes pro aplikaci a následná konzultace s vedoucím práce
+Vytvoření designu pro aplikaci.
+Vytvoření iOS aplikace.
+
+\chapter{Analýza a návrh}
+Na začátku, než se pustíme do analýzy, je nutné zmínit se o opendatech a vysvětlit její definici.
+Koncept opendata, neboli otevřená data, jsou podle definice informace a data zveřejněná na internetu, která jsou úplná, snadno dostupná, strojově čitelná, používající standardy s volně dostupnou specifikací, zpřístupněná za jasně definovaných podmínek užití dat s minimem omezení a dostupná uživatelům při vynaložení minima možných nákladů.   
+
+Otevřená data ve světě
+Jako první se systematickým zveřejňováním dat v otevřené podobě začala zabývat vláda USA. Katalog založila v květnu roku 2009. Ten záhy získal podporu prezidenta Obamy a stal se tak oficiálním národním katalogem dat. Prezident v prosinci téhož roku vydal direktivu, která nařizovala všem vládním institucím a agenturám identifikovat ve svých databázích tři datové sady a zveřejnit je prostřednictvím portálu.
+http://www.opendata.cz/en/node/29
+
+V České republice otevřená data můžeme nalézt pro větší města nebo kraje nebo i od ministerstva vnitra a ministerstva financí. Právě jeden z těchto portálů, několikrát výše zmiňovaném, budeme v aplikaci využívat.
+
+Dříve, než se začneme zabývat funkčností aplikace, bychom měli zanalyzovat, otestovat funkčnost serveru a korektnost dat, které budem budeme využívat napříč aplikace. Data stahována z portálu jsou totiž základním stavebním prvkem aplikace a aplikace bez nich nebude správně fungovat.
+
+Nejdřive popíšu na jakém principu funguje portál a jak ji budem využívat. Na portálu se vyskytují data ve formátu xlsx a csv (vysvetlit). Po dalším zkoumání jsem zjistil, že na portálu je implementované webove REST API, které umí zpracovávat requesty. Tzn že stačí kdyz pošleme request na tento portál a dostaneme odpověď ve světově uznávaném formátu JSON.
+
+Při bližším zkoumáním těchto datasetů od pražské zoo jsem bohužel narazil na velké nedostatky a bez jejich opravení jsem nemohl nadále pokračovat ve své práci. V datasetech se totiž vyskytovali duplicitní  data, která byla mezi sebou špatně provázaná. Data byla i nekompletní, což dokazovalo to, že by se v celém zoo vyskytovali pět druhů zvířat. Po konzultaci s vedoucím jsme došli závěru, že data v ten moment byla nepoužitelná e je nutné je opravit. 
+S vedoucím jsme tedy naplánovali schůzkum s vedeni portálu opendata.praha.eu Ondřejem Profantem a s technickým vedením pražské zoo Jiřím malinou. Zde jsme probrali vyskytlé chyby, ktere vedení zoo s pomocí Ondřeje opraví a navíc poskytnou další data, které jsem navrhl. Konkrétněji jsem navrhl, aby se v datech nacházel i link na obrázky zvířat, které byly v té dobe k dispozici na webu pražské zoo. Po kratší pauze se data skutečne dala do pořádku a já jsem měl všechny prostředky k tomu abych začal vývoj.
+
+Po důkladném otestování datasetů jsem navrhl tyto funkční a nefunkční požadavky aplikace
+
+Funkční požadavky
+Synchronizace dat z portálu opendata.praha.eu
+Ukládání dat pro offlinové využití
+Zobrazení seznamu všech zvířat
+Řzení seznamu zvířat podle abecedy
+Hledání zvířete podle jména
+Zobrazení detailních informací u jednotlivých zvířat (potrava, latinský název, chov, rozmnožování a další zajímavosti)
+Stahování obrázků z webových stránek zoopraha.cz pomocí odkazů, získané z dat.
+Rozdělení jednotlivých zvířat podle potravy, třídy a lokality.
+Přehled míst na mapě se zvířaty v okolí Pražské zoo.
+
+
+Nefunkční požadavky
+Aplikace poběží na iOS 9.0 a novější
+Aplikace bude napsána v jazyce Swift 
+Aplikace bude mít přehlednou navigaci s plynulým uživatelským rozhraním
+Aplikace poběží v offline režimu
+
+
+\chapter{Průzkum trhu a odhad ziskovosti aplikací}
+Z výše uvedeného návrhu bychom měli nejdříve prozkoumat trh a zjistit, jak se s tím vypořádali předchozí vývojáři, zda už takové řešení existuje, případně jak se od nich budeme lišit a zda-li vymyslíme lepší řešení.
+
+Monetizace aplikace
+Předtím než se pustíme do odhadu ziskovostí aplikací, nejdříve popíšeme existujicí modely monetizace. V současné době existují několik metod, jak můžeme aplikaci monetizovat. Níže tyto modely v krátkosti popíšu
+Placené aplikace
+Za každé unikátní stažení aplikace můžeme obdržet určitou částku, kterou si určíme přéd vydáním aplikace do appstoru. Průměrné částky za jednotlivé stažení se pohybují od jednoho až po pěti dolarů.
+In-App purchases
+Princip tohoto způsobu je vcelku jednoduchý. Aplikace jsou většinou volně ke stažení, uživatelům nabízejí omezenou funkčnost a za příplatek se jim další funkce rožšíří. Zde se může jednat buď o jednorázový příplatek, nebo o měsíční, až ročné předplatné. 
+Reklamy
+Tvůrcům aplikací se v případě velkého počtu jejího stažení a užívání vyplatí vydat aplikaci jako bezplatnou a těžit za každé zobrazení reklamy, obsažené v aplikaci.
+
+Propagace businessu pomocí aplikace
+Samozřejmě nesmíme zapomenout na ty aplikace, které mají za účel propagovat už rozjetý business. Tyto aplikace sami o sobě nevydělavájí, ale svým způsobem podporují, propagují a rozšiřují už nějakou fungující službu. Zde bych jako příklad uvedl aplikace od telefonních operátorů, nebo od různých bank.
+
+Níže si provedeme průzkum několik aplikací, prozkoumáme jejich business model a odhadnem ziskovost těchto řešení. Těchto výsledků jsem dosáhnul tím, že jsem si nejprve procházel App store a snažil jsem se vyhledat aplikace na základě několika  různých klíčových slov.
+Pokud jen použijeme informace z appstoru, nezjistili bychom žádné statistiky o těchto aplikacích. Narozdil od appstore, googleapps poskytuje informace o rozmezí počtu stažení. Pokud aplikace má verze pro obě platformy a známe přibližný poměr uživatelů iOS a Android v ČR (5:1 podle http://www.mobilmania.cz/clanky/cisla-mluvi-jasne-jake-mobilni-os-pouzivaji-cesi/sc-3-a-1328855/default.aspx), můžeme se od této důležité informace odrazit.
+
+Údolí slonů
+Na klíčové slovo Zoo Praha, mě kupodivu nenavedlo appstore na žádnou aplikaci tohoto jména, ale na aplikaci jménem Údolí slonů.
+Už z názvu je jasné, že se celá aplikace zaměřuje pouze na jeden typ zvířete, což je velké omezení. Při prvním spuštěním aplikace mě neminulo chybné zobrazování některých uživatelských prvků. Status bar je překryt plovoucím tlačítkem v aplikaci a některé tlačítka žádnou akci nevyvolávala . Jako pozitivum tu vidím četnost různých obrázků a zajímavé informace o ochraně zvířat.
+Odhad ziskovosti je zde celkém jednoduchý. Aplikace je volně ke stažení, neobsahuje žádné tzv. in-app purchases a ani žádné reklamy. Můj odhad ziskovosti je zde tudíž nulový. Ostatně i obsah aplikace, který se zaměřoval na ochranu zvířat mě donucuje k myšlence, že tuto aplikaci vydala s velkou pravděpodobností nezisková organice.
+Avšak po delším zkoumání a procházením si internetových stránek Pražské zoo jsem zjistil, že právě tato aplikace byla vydána samotnou zoo. Můžem se zde tedy zabývat, jak si tato aplikace vede, jako propagační materiál. Zjistil jsem, že aplikace má i svou verzi na platformě Android, kde má 1000 až 5000 stažení. Z výše uvedeného poměru můžem tak odhadnout, že iOS verze má přibližně 200 až 1000 počet stažení. Jak dále bychom mohli odhadnout ziskovost? Mým dalším neprofesionálním odhadem, by zde byl, že aplikace by mohla oslovit 10\% uživatelů, co si aplikaci mohli stáhnout a ročně by navštěvovali zoologickou zahradu. Pokud budem s tímto hrubým odhadem dále počítat, tak roční zisk by činil maximálně 20 000Kč, pokud beru v potaz cenu vstupného 200Kč. S touto informací se dále pokusím vypočítat i návratnost investice. Po důkladném procházením aplikace a na základě mých předchozích zkušeností jako vývojář, je můj hrubý odhad 80 člověkohodin. Průměrná člověkohodina v ČR činí 1000Kč a proto můžeme říci, že náklady za aplikace by se mohli vyšplhat na 80 000Kč. Pokud nebudeme brát v potaz inflaci, roční diskont 4\%, návratnost investice by byla zhruba za 4 roky. Mějme na vědomí, že tyto informace jsou pouze orientační a nejsou bohužel ničím podložené.
+
+Na stejném principu funguje i aplikace Pavilon želv. Dá se řici, že aplikace je téměř totožná až na mediální obsah. Je tu stejná struktura aplikace a vyskytují se zde i stejné elementy. Také zde naleznem stejné chyby jako v předchozí aplikaci. Avšak počet stažení je zde znatelně méně. Na android app store se pohybuje počet stažení mezi 100 - 500. Pokud použijeme stejný princip odhadu, jako v předchozí aplikaci, vyšlo by nám, že návratnost investice by trvala 40 let.
+
+ZOO Liberec
+Na další aplikaci, kterou jsem narazil je ZOO Liberec, aplikace vydána samotnou Libereckou zoologickou zahradou. Kupodivu jsem na tuto aplikaci nenarazil pomocí hledáním na appstore, ale narazil jsem na ní díky internetovému článku. (link)
+Tato aplikace mě zaujala mnohem více než ty předchozí. Zde jsem měl přehledný navigační systém, který je vyřešen pomocí tabBaru(vysvětlit). Aplikace určitě splnila svůj účel, a to informovat návštěvníky o aktualním dění v zoo pomocí přehledné tabulky událostí a programů. Obsahuje interaktivní mapu zoo, která pomáhá navštěvníkovi v orientaci a vypisuje důležité body, jako jsou parkovací místa a veřejné WC.
+Zde mě jen překvapilo, že jen 500 - 1000 uživatelů si aplikaci stáhlo. Aktuální vstupné zde činí 90Kč. Pro vyšší komplexnost aplikace je můj odhad 200 hodin a obnobným principem jsem došel k závěru, že návratnost investice by byla nejménně 25 let. 
+
+
+
+Shrnutí,
+Z výše uvedéného průzkumu jsem zjistil několik věcí. Určitě se vyvarovat chyb, aby aplikace fungovala i na budoucích zařízení. Budu klást důraz na tzv. autolayout, optimalizaci uživatelského zařízení pro různé velikosti displayů na zařízeních. Toho dosáhnu využitím nativních komponent, které nám poskytuje Apple. Blíže se tomu budu věnovat v kapitole o uživatelském rozhraní aplikace. Mít přehlednou navigaci, aby se v ní mohli orientovat uživatelé všech věkových kategorií.
+
+Návrh aplikace 
+Po detailním průzkumu uvedených aplikací jsem navrhl wireframy aplikace a po sléze jsem je předal vedoucímu bakalářské práce a jeho týmu designerů pro zkontrolování. Pro náčrt wireframů jsem si vybral nástroj mockingbird, který je bezplatný k užití.
+
+Ukázka wireframu pomocí nástroje Mockingbird
+
+Obrazovky v aplikaci
+Pro přehlednou navigaci v aplikaci zde použiji boční menu. Toto řešení využivá řada aplikací. Boční menu, které bude dostupné pomocí horního levého tlačítka bude obsahovat tyto sekce
+Seznam zvířat
+Zvířata rozdělená podle tříd
+Zvířata rozdělena podle kontinentů, na níž se vyskytují
+Zvířata rozdělená podle potravy
+Interaktivní mapu zoo
+Informace o aplikaci
+
+Seznam zvířat
+Tato obrazovka bude zastupovat funkci domovské stránky aplikace. Obsahuje všechna zvířata, která naleznem v zoo, seřazena v přehledné tabulce podle abecedy. Každý řádek tabulky bude obsahovat fotku zvířete se jménem a jednu zajímavost o něm. Po kliknutí na řádek se aplikace přesune do detailu zvířete. Zde naleznem informace další detailnější informace o zvířeti jako je potrava, rozmnožování a další.
+
+Seznamy zvířat dle dělení.
+Jsou to obrazovky, na kterých budou zvířata seskupena do jednotlivých výše uvedených kategorií. Také tu bude možnost zobrazení detailu zvířete.
+
+Interaktivní mapa zoo
+Pro tuto obrazovku bude použita nativní komponenta map v iOS. Zaměříme se zde na okolí zoo a zobrazíme zde body, na kterých se zvířata vyskytují. Bude to možnost navigace do nativních map v mobilu a výpočet trasy od aktuální polohy až k Zoo Praha. 
+
+Informace o aplikaci
+Zde budou veškeré zdroje, které budou v aplikaci využity.
+
+Technologie na vývoj
+Níže vypíšu technologie, které budu využívat pro vývoj aplikace. Také vypíšu důvody proč jsem si vybral tyto konkrétní technologie
+
+Jazyk a prostředí vývoje
+Na výběr máme jazyky Objective-C a Swift, které jsou poskytovány a spravovány přímo společností Apple. Objective-C je již starším jazykem, užívaným k vývoji aplikací na iOS a OS X platformě. Vychází ze staršího jazyka Smalltalk je pořád hojne využíván, protože řada firem má aplikaci napsanou v Objective-C a přechod na novější jazyk Swift by byl velice nákladný.
+Swift je nástupcem Objective-C, říká se o něm, že je to "Objective-C bez C". Poprvé byl představen roku 2014 na konferenci Applu. Z hlediska syntaxe je Swift jazyku Objective-C velmi podobný, ale na rozdíl od Objective-C nevyužívá ukazatele na proměnné.
+
+Pro bakalářskou práci bude použit jazyk Swift. Jedním z důvodů výběru tohoto jazyka je moje pracovní zkušenost. Swift je v současné době vývojáří preferovaným jazykem, a proto existuje mnoho nezávislých knihoven, které tak usnadňují vývoj aplikace.
+
+Pro prostředí vývoje jsem si vybral Xcode. Stejně jako většina vývojářů iOS je Xcode preferované prostředí. Je to software vydaným, spravovaným Applem a obsahuje veškeré nástroje potřebné od napsání prvního řádku kódu, až po vydání do AppStore. Existuje však i jiná alternativa k Xcode a tou je AppCode od firmy JetBrains. Výhody AppCode oproti Xcode jsou vlastní přizpůsobení. AppCode např. umí i generovat jednotlivé řádky kódu, které si nadefinujeme.
+
+Nevýhodou AppCode je závislost na Xcodu, pro použití AppCode pořád potřebujeme mít nainstalovaný Xcode. Další nevýhodou je také stabilita programu. Mnohým vývojářům se vyskytly problémy při vývoji, kde jim program padal, nebo nefungovaly vstupy od klávesnice.(http://blog.prolificinteractive.com/2015/05/15/appcode-vs-xcode/)
+AppCode také nemá podporu pro Storyboarding a user interface. Storyboarding je jeden z několika způsobů jak vytvářet uživatelské rozhraní. Dále o nich budu popisovat v kapitole o uživatelském rozhraní a proč jsem se rozhodl je používat.
+(https://spin.atomicobject.com/2014/08/02/appcode-vs-xcode/)
+
+Architektura aplikace
+V současné době se pro vývoj mobilních aplikací využívají tyto architektury
+
+MVC - Model View Controller, nebo Massive View Controller
+Je všeobecné známá a je to vůbec nejvíce užívaná architektura. MVC architektura se všeobecně rozděluje do tří vrstev.
+Model reprezentuje data a business logiku aplikace.
+View zobrazuje uživatelské rozhraní
+Controller má na starosti tok událostí v aplikaci a obecně aplikační logiku.(https://www.zdrojak.cz/clanky/uvod-do-architektury-mvc/)
+
+V iOS vývoji se controller nazývá ViewController. Protože se také stará o uživatelské rozhraní. Nejen, že se stará o logiku, ale třeba i přeposílává data z modelové vrstvy do svých views. Vývojáři controlleru přivlastňují jméno Massive View Controller, protože často se zde objevují funkce týkajících síťových požadavků,nebo i  zpracovávání dat. Často jsou zde funkce, která by neměly být součástí controlleru, ale podle definice by neměly patřit ani do jiných vrstev a proto se objevují zde. ViewController se tak stává postupně hůře a hůře čitelným.(https://www.raywenderlich.com/132662/mvc-in-ios-a-modern-approach)
+
+https://medium.com/ios-os-x-development/ios-architecture-patterns-ecba4c38de52#.vvf3h2gzs
+
+Model view view model
+Kvůli výše uvedenému problému Massive View Controlleru vývojáři vymysleli další řešení. MVVM narozdíl od MVC používá místo ViewControlleru ViewModel.Tato vrstva přímo komunikuje s modelovou vrstvou, stará se např. o transformaci dat a uchovává si jejich stav. Následně pak tyto data předá svému view. Protože každý ViewModel váže jen ke jednomu konkrétnímu View, je její funkce omezená a je ma jen jeden konkrétní úkol. Aplikace je tak rozdělena do menších logických modulů a díky tomu můžeme moduly opětovně používat Pravidlo DIY(Dont repeat yourself), nebo pro ně můžeme napsat nezavislé unit testy. Právě i kvůli tomu je tato architektura mnohem vhodnější pro unit testing.
+
+VIPER 
+VIPER vznikla jako vylepšená verze MVVM. Přibyli nám tu navíc vrstvy 
+https://www.objc.io/issues/13-architecture/viper/
+View - zobrazuje to, co vidí uživatel
+Interactor se stará o business logiku
+Presenter se stará o přípravu obsahu, který obdržel od Interactoru. Také se stará o vstupy od uživatele.
+Entity - Obsahuje datový model
+Routing - má na starosti navigační logiku aplikace. Např se stará, která obrazovka se má objevit uživateli.
+
+
+Pro mensi aplikace je jsou MVVM a VIPER zbytecne slozite. Generujou zbytecne mnoho trid pro praci. I ta nejmensi zmena v aplikaci vyzaduje prepisovani mnoho kodu s tim spojene, a proto je tento model vhodny spise pro aplikace, ktere maji presne definou strukturu a funcionalitu. Take svoji komplexnosti pro nove vyvojare byva tezce pochopitelna a trva delsi dobu si ji osvojit.
+
+
+Vzhledem k osobnim zkusenostem a k vlastnosti aplikace jsem si vybral mvc architekturu, ktera se podle me jevi jako nejvhodnejsi.
+Jak uz jsem vyse zminil, mvc je zakladni architektura primo doporucovana Applem. Stejne tak je i diky sve primocarosti ctenarum blize k pochopeni. Take dokazu nevyhody architektury mvc, jako je Massive View Controller vhodne vykompenzovat sirokou skalou vlastnosti moderniho jazyka Swift, jakymi jsou napr. tzv. protokoly a extensiony. Vice se tim budu zabyvat primo v dalsich kapitolach.
+
+
+\chapter{Realizace}
+Konfigurace projektu
+
+Nainstalovaní potřebných knihoven a balíčků
+
+
+Prvotní spusteni projektu
+
+Extensiony v aplikaci
+S pojmem extension se s vyvojem ve Swiftu budem potkavat velice casto.
+
+Definovani modelove vrstvy
+
+
+
+Vytvoreni prvotni navigace 
+
+Vytvoreni pomocne tridy pro spravu pozadavku ze serveru
+
+Vytvoreni tridy pro spravu databaze
+
+Parsovani pozadavku a ukladani do databaze
+
+
+Ukladani a parsovani obrazku
+
+
+Definovani vzhledu radky pro tabulky
+
+
+Pouzite technologie
+
+Externi knihovny
+Pro spravu externich knihoven bude vyuzit cocoapods. Cocoapods 
+je tzv. dependency manager, v prekladu znamena, byl vyvinut prave pro ucely spravovani externich knihoven. Ve srovnani s jinymi nastroji jako je napriklad Carthage, je vyhodny tim, ze 
+
+Alamofire
+
+SwiftyJSON
+
+RESideMenu
+
+RealmSwift
+
+SDWebImage
+
+SVProgressHUD
+
+
+\chapter{Testování}
+
+\begin{conclusion}
+	%sem napište závěr Vaší práce
+\end{conclusion}
+
+\bibliographystyle{csn690}
+\bibliography{mybibliographyfile}
+
+\appendix
+
+\chapter{Seznam použitých zkratek}
+% \printglossaries
+\begin{description}
+	\item[GUI] Graphical user interface
+	\item[XML] Extensible markup language
+\end{description}
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % Tuto kapitolu z výsledné práce ODSTRAŇTE.
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% \chapter{Návod k~použití této šablony}
+% 
+% Tento dokument slouží jako základ pro napsání závěrečné práce na Fakultě informačních technologií ČVUT v~Praze.
+% 
+% \section{Výběr základu}
+% 
+% Vyberte si šablonu podle druhu práce (bakalářská, diplomová), jazyka (čeština, angličtina) a kódování (ASCII, \mbox{UTF-8}, \mbox{ISO-8859-2} neboli latin2 a nebo \mbox{Windows-1250}). 
+% 
+% V~české variantě naleznete šablony v~souborech pojmenovaných ve formátu práce\_kódování.tex. Typ může být:
+% \begin{description}
+% 	\item[BP] bakalářská práce,
+% 	\item[DP] diplomová (magisterská) práce.
+% \end{description}
+% Kódování, ve kterém chcete psát, může být:
+% \begin{description}
+% 	\item[UTF-8] kódování Unicode,
+% 	\item[ISO-8859-2] latin2,
+% 	\item[Windows-1250] znaková sada 1250 Windows.
+% \end{description}
+% V~případě nejistoty ohledně kódování doporučujeme následující postup:
+% \begin{enumerate}
+% 	\item Otevřete šablony pro kódování UTF-8 v~editoru prostého textu, který chcete pro psaní práce použít -- pokud můžete texty s~diakritikou normálně přečíst, použijte tuto šablonu.
+% 	\item V~opačném případě postupujte dále podle toho, jaký operační systém používáte:
+% 	\begin{itemize}
+% 		\item v~případě Windows použijte šablonu pro kódování \mbox{Windows-1250},
+% 		\item jinak zkuste použít šablonu pro kódování \mbox{ISO-8859-2}.
+% 	\end{itemize}
+% \end{enumerate}
+% 
+% 
+% V~anglické variantě jsou šablony pojmenované podle typu práce, možnosti jsou:
+% \begin{description}
+% 	\item[bachelors] bakalářská práce,
+% 	\item[masters] diplomová (magisterská) práce.
+% \end{description}
+% 
+% \section{Použití šablony}
+% 
+% Šablona je určena pro zpracování systémem \LaTeXe{}. Text je možné psát v~textovém editoru jako prostý text, lze však také využít specializovaný editor pro \LaTeX{}, např. Kile.
+% 
+% Pro získání tisknutelného výstupu z~takto vytvořeného souboru použijte příkaz \verb|pdflatex|, kterému předáte cestu k~souboru jako parametr. Vhodný editor pro \LaTeX{} toto udělá za Vás. \verb|pdfcslatex| ani \verb|cslatex| \emph{nebudou} s~těmito šablonami fungovat.
+% 
+% Více informací o~použití systému \LaTeX{} najdete např. v~\cite{wikilatex}.
+% 
+% \subsection{Typografie}
+% 
+% Při psaní dodržujte typografické konvence zvoleného jazyka. České \uv{uvozovky} zapisujte použitím příkazu \verb|\uv|, kterému v~parametru předáte text, jenž má být v~uvozovkách. Anglické otevírací uvozovky se v~\LaTeX{}u zadávají jako dva zpětné apostrofy, uzavírací uvozovky jako dva apostrofy. Často chybně uváděný symbol "{} (palce) nemá s~uvozovkami nic společného.
+% 
+% Dále je třeba zabránit zalomení řádky mezi některými slovy, v~češtině např. za jednopísmennými předložkami a spojkami (vyjma \uv{a}). To docílíte vložením pružné nezalomitelné mezery -- znakem \texttt{\textasciitilde}. V~tomto případě to není třeba dělat ručně, lze použít program \verb|vlna|.
+% 
+% Více o~typografii viz \cite{kobltypo}.
+% 
+% \subsection{Obrázky}
+% 
+% Pro umožnění vkládání obrázků je vhodné použít balíček \verb|graphicx|, samotné vložení se provede příkazem \verb|\includegraphics|. Takto je možné vkládat obrázky ve formátu PDF, PNG a JPEG jestliže používáte pdf\LaTeX{} nebo ve formátu EPS jestliže používáte \LaTeX{}. Doporučujeme preferovat vektorové obrázky před rastrovými (vyjma fotografií).
+% 
+% \subsubsection{Získání vhodného formátu}
+% 
+% Pro získání vektorových formátů PDF nebo EPS z~jiných lze použít některý z~vektorových grafických editorů. Pro převod rastrového obrázku na vektorový lze použít rasterizaci, kterou mnohé editory zvládají (např. Inkscape). Pro konverze lze použít též nástroje pro dávkové zpracování běžně dodávané s~\LaTeX{}em, např. \verb|epstopdf|.
+% 
+% \subsubsection{Plovoucí prostředí}
+% 
+% Příkazem \verb|\includegraphics| lze obrázky vkládat přímo, doporučujeme však použít plovoucí prostředí, konkrétně \verb|figure|. Například obrázek \ref{fig:float} byl vložen tímto způsobem. Vůbec přitom nevadí, když je obrázek umístěn jinde, než bylo původně zamýšleno -- je tomu tak hlavně kvůli dodržení typografických konvencí. Namísto vynucování konkrétní pozice obrázku doporučujeme používat odkazování z~textu (dvojice příkazů \verb|\label| a \verb|\ref|).
+% 
+% \begin{figure}\centering
+% 	\includegraphics[width=0.5\textwidth, angle=30]{cvut-logo-bw}
+% 	\caption[Příklad obrázku]{Ukázkový obrázek v~plovoucím prostředí}\label{fig:float}
+% \end{figure}
+% 
+% \subsubsection{Verze obrázků}
+% 
+% % Gnuplot BW i barevně
+% Může se hodit mít více verzí stejného obrázku, např. pro barevný či černobílý tisk a nebo pro prezentaci. S~pomocí některých nástrojů na generování grafiky je to snadné.
+% 
+% Máte-li například graf vytvořený v programu Gnuplot, můžete jeho černobílou variantu (viz obr. \ref{fig:gnuplot-bw}) vytvořit parametrem \verb|monochrome dashed| příkazu \verb|set term|. Barevnou variantu (viz obr. \ref{fig:gnuplot-col}) vhodnou na prezentace lze vytvořit parametrem \verb|colour solid|.
+% 
+% \begin{figure}\centering
+% 	\includegraphics{gnuplot-bw}
+% 	\caption{Černobílá varianta obrázku generovaného programem Gnuplot}\label{fig:gnuplot-bw}
+% \end{figure}
+% 
+% \begin{figure}\centering
+% 	\includegraphics{gnuplot-col}
+% 	\caption{Barevná varianta obrázku generovaného programem Gnuplot}\label{fig:gnuplot-col}
+% \end{figure}
+% 
+% 
+% \subsection{Tabulky}
+% 
+% Tabulky lze zadávat různě, např. v~prostředí \verb|tabular|, avšak pro jejich vkládání platí to samé, co pro obrázky -- použijte plovoucí prostředí, v~tomto případě \verb|table|. Například tabulka \ref{tab:matematika} byla vložena tímto způsobem.
+% 
+% \begin{table}\centering
+% 	\caption[Příklad tabulky]{Zadávání matematiky}\label{tab:matematika}
+% 	\begin{tabular}{|l|l|c|c|}\hline
+% 		Typ		& Prostředí		& \LaTeX{}ovská zkratka	& \TeX{}ovská zkratka	\tabularnewline \hline \hline
+% 		Text		& \verb|math|		& \verb|\(...\)|	& \verb|$...$|		\tabularnewline \hline
+% 		Displayed	& \verb|displaymath|	& \verb|\[...\]|	& \verb|$$...$$|	\tabularnewline \hline
+% 	\end{tabular}
+% \end{table}
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\chapter{Obsah přiloženého CD}
+
+%upravte podle skutecnosti
+
+\begin{figure}
+	\dirtree{%
+		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
+		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
+		.1 src.
+		.2 impl\DTcomment{zdrojové kódy implementace}.
+		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.
+		.1 text\DTcomment{text práce}.
+		.2 thesis.pdf\DTcomment{text práce ve formátu PDF}.
+		.2 thesis.ps\DTcomment{text práce ve formátu PS}.
+	}
+\end{figure}
+
+\end{document}

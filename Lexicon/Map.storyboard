@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KyR-rs-7mw">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="BYM-fP-CRR">
+            <objects>
+                <navigationController storyboardIdentifier="MapNavVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KyR-rs-7mw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E6M-AE-b0c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="X7b-Dp-6sH" kind="relationship" relationship="rootViewController" id="fAN-6k-tca"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zyy-Rs-7An" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="842"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="WEM-iA-KwP">
+            <objects>
+                <viewController id="X7b-Dp-6sH" customClass="MapVC" customModule="Lexicon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RXk-LP-fRI"/>
+                        <viewControllerLayoutGuide type="bottom" id="1CW-ei-khr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YLO-Rm-Qwf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tea-ow-YeQ">
+                                <frame key="frameInset" minY="64" width="375" height="328"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JMF-ys-cUI">
+                                <color key="backgroundColor" red="0.10993324610000001" green="0.132115071" blue="0.2609775641" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="lMK-SD-zoY"/>
+                                </constraints>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="DJY-iW-axU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seznam míst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEp-q4-AEj">
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <color key="textColor" red="0.94117647059999998" green="0.25490196079999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notes-icon" translatesAutoresizingMaskIntoConstraints="NO" id="quY-0c-mRf">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Vru-PW-8gq"/>
+                                                <constraint firstAttribute="width" constant="48" id="jag-Vh-sWw"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.10993324610000001" green="0.132115071" blue="0.2609775641" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="aEp-q4-AEj" firstAttribute="centerY" secondItem="quY-0c-mRf" secondAttribute="centerY" id="2rN-WW-V2V"/>
+                                        <constraint firstItem="quY-0c-mRf" firstAttribute="leading" secondItem="DJY-iW-axU" secondAttribute="leading" constant="15" id="SDb-YT-nbx"/>
+                                        <constraint firstItem="aEp-q4-AEj" firstAttribute="leading" secondItem="quY-0c-mRf" secondAttribute="trailing" constant="8" symbolic="YES" id="jPU-3t-wvb"/>
+                                        <constraint firstItem="quY-0c-mRf" firstAttribute="centerY" secondItem="DJY-iW-axU" secondAttribute="centerY" id="kTG-l4-Lbu"/>
+                                    </constraints>
+                                </view>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sports-car" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-7T-eMK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="9bm-FF-nfV"/>
+                                    <constraint firstAttribute="width" secondItem="vtH-7T-eMK" secondAttribute="height" multiplier="1:1" id="UcO-sJ-h6v"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5K-ZI-Bm6">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="2Fo-W2-enY"/>
+                                    <constraint firstAttribute="width" constant="105" id="5W9-vO-7vc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" red="0.94117647059999998" green="0.25490196079999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Navigovat">
+                                    <color key="titleColor" red="0.94117647059999998" green="0.25490196079999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="navigateButtonTapped:" destination="X7b-Dp-6sH" eventType="touchUpInside" id="b2K-wJ-h1l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tea-ow-YeQ" firstAttribute="leading" secondItem="YLO-Rm-Qwf" secondAttribute="leading" id="AIY-Xa-9P9"/>
+                            <constraint firstAttribute="trailing" secondItem="z5K-ZI-Bm6" secondAttribute="trailing" id="GKe-VX-4cb"/>
+                            <constraint firstItem="JMF-ys-cUI" firstAttribute="top" secondItem="tea-ow-YeQ" secondAttribute="bottom" id="GQG-7J-e21"/>
+                            <constraint firstItem="z5K-ZI-Bm6" firstAttribute="top" secondItem="vtH-7T-eMK" secondAttribute="bottom" constant="-20" id="J7z-ut-LU0"/>
+                            <constraint firstItem="vtH-7T-eMK" firstAttribute="centerX" secondItem="z5K-ZI-Bm6" secondAttribute="centerX" id="OcG-vH-wpa"/>
+                            <constraint firstAttribute="trailing" secondItem="JMF-ys-cUI" secondAttribute="trailing" id="QgQ-6h-Hht"/>
+                            <constraint firstItem="tea-ow-YeQ" firstAttribute="top" secondItem="RXk-LP-fRI" secondAttribute="bottom" id="U5r-Ed-s9E"/>
+                            <constraint firstItem="JMF-ys-cUI" firstAttribute="top" secondItem="z5K-ZI-Bm6" secondAttribute="bottom" id="gB1-iV-htb"/>
+                            <constraint firstAttribute="trailing" secondItem="tea-ow-YeQ" secondAttribute="trailing" id="jim-YE-WVo"/>
+                            <constraint firstItem="1CW-ei-khr" firstAttribute="top" secondItem="JMF-ys-cUI" secondAttribute="bottom" id="vql-q8-vVf"/>
+                            <constraint firstItem="JMF-ys-cUI" firstAttribute="leading" secondItem="YLO-Rm-Qwf" secondAttribute="leading" id="wWN-O8-ZWr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eEp-YL-i2p"/>
+                    <connections>
+                        <outlet property="mapView" destination="tea-ow-YeQ" id="5AU-wb-pEN"/>
+                        <outlet property="tableView" destination="JMF-ys-cUI" id="XID-Xn-GlU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2QI-nK-Nly" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1109.5999999999999" y="841.52923538230891"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="notes-icon" width="64" height="64"/>
+        <image name="sports-car" width="64" height="64"/>
+    </resources>
+</document>

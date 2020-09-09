@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="KGk-i7-Jjw" customClass="AnimalListTVCell" customModule="Lexicon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="390" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kcd-2D-Lvq" customClass="RoundedImageView" customModule="Lexicon" customModuleProvider="target">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="kcd-2D-Lvq" secondAttribute="height" multiplier="1:1" id="Qw0-kU-Any"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajJ-gs-jDm">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thv-8v-WSf">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.10993324610000001" green="0.132115071" blue="0.2609775641" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="thv-8v-WSf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="8D1-XM-94B"/>
+                    <constraint firstItem="thv-8v-WSf" firstAttribute="leading" secondItem="kcd-2D-Lvq" secondAttribute="trailing" constant="10" id="KAb-ki-OZP"/>
+                    <constraint firstAttribute="trailing" secondItem="ajJ-gs-jDm" secondAttribute="trailing" constant="15" id="LoU-e2-lkz"/>
+                    <constraint firstItem="ajJ-gs-jDm" firstAttribute="leading" secondItem="thv-8v-WSf" secondAttribute="leading" id="VHd-bh-3Mn"/>
+                    <constraint firstItem="kcd-2D-Lvq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hzt-Jg-oQL"/>
+                    <constraint firstItem="ajJ-gs-jDm" firstAttribute="top" secondItem="thv-8v-WSf" secondAttribute="bottom" constant="8" id="jmn-xf-06F"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="thv-8v-WSf" secondAttribute="trailing" constant="15" id="oa4-XG-fD1"/>
+                    <constraint firstItem="kcd-2D-Lvq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="qhG-it-oEC"/>
+                    <constraint firstAttribute="bottom" secondItem="kcd-2D-Lvq" secondAttribute="bottom" constant="10" id="vAe-h4-Up9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="105" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="latinNameLabel" destination="ajJ-gs-jDm" id="2J0-pq-oLz"/>
+                <outlet property="mainImageView" destination="kcd-2D-Lvq" id="OG1-Xw-X5G"/>
+                <outlet property="nameLabel" destination="thv-8v-WSf" id="Gz2-Wt-Ljd"/>
+            </connections>
+            <point key="canvasLocation" x="69" y="108.5"/>
+        </tableViewCell>
+    </objects>
+</document>

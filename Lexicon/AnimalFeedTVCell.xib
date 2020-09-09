@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="730" id="KGk-i7-Jjw" customClass="AnimalFeedTVCell" customModule="Lexicon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="730"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="396" height="729"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slon" translatesAutoresizingMaskIntoConstraints="NO" id="fMC-UD-qtf">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="230" id="uWc-tK-ZUi"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPo-HD-m1v" customClass="BlackGradientView" customModule="Lexicon" customModuleProvider="target">
+                        <frame key="frameInset" minY="95" width="396" height="150"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slon indickej" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-Kw-Qhr">
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="28"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yCk-Kw-Qhr" firstAttribute="centerX" secondItem="wPo-HD-m1v" secondAttribute="centerX" id="Pfa-rI-tcn"/>
+                            <constraint firstAttribute="bottom" secondItem="yCk-Kw-Qhr" secondAttribute="bottom" constant="20" id="eYJ-lT-bgi"/>
+                            <constraint firstAttribute="height" constant="150" id="zE0-hU-mWU"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zUV-jS-95W">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Latinský název" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY3-Oh-vzb">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="usm-eP-qdS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.94117647058823528" green="0.25490196078431371" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEv-DF-JvB">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QqY-vu-CmW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Potrava" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qU-hq-chv">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="TaG-E5-ht9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.25490196079999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sV1-PA-lRy">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4Ub-nn-cVo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Zajímavosti" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIK-bf-k2V">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="eg7-2l-pWh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.25490196079999999" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAI-Op-Z0l">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" red="0.10993324610000001" green="0.132115071" blue="0.2609775641" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="zUV-jS-95W" secondAttribute="bottom" constant="16" id="8Bb-9b-N9T"/>
+                    <constraint firstItem="zUV-jS-95W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="D5l-j4-0am"/>
+                    <constraint firstItem="zUV-jS-95W" firstAttribute="top" secondItem="fMC-UD-qtf" secondAttribute="bottom" constant="14" id="DzB-9g-BY6"/>
+                    <constraint firstAttribute="trailing" secondItem="wPo-HD-m1v" secondAttribute="trailing" id="MlC-KP-893"/>
+                    <constraint firstItem="fMC-UD-qtf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UYf-EI-f1b"/>
+                    <constraint firstAttribute="trailing" secondItem="fMC-UD-qtf" secondAttribute="trailing" id="UrR-C6-VdU"/>
+                    <constraint firstItem="wPo-HD-m1v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bpP-1n-27K"/>
+                    <constraint firstItem="fMC-UD-qtf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rbh-yV-4g0"/>
+                    <constraint firstAttribute="trailing" secondItem="zUV-jS-95W" secondAttribute="trailing" constant="15" id="tFf-MR-JQx"/>
+                    <constraint firstItem="wPo-HD-m1v" firstAttribute="bottom" secondItem="fMC-UD-qtf" secondAttribute="bottom" constant="1" id="wFb-ZG-bI3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attractionLabel" destination="zIK-bf-k2V" id="UHY-Fh-xqi"/>
+                <outlet property="attractionValueLabel" destination="sAI-Op-Z0l" id="O8i-q0-T1Q"/>
+                <outlet property="foodLabel" destination="3qU-hq-chv" id="wEb-KP-yK8"/>
+                <outlet property="foodValueLabel" destination="sV1-PA-lRy" id="HdT-gk-PKN"/>
+                <outlet property="gradientView" destination="wPo-HD-m1v" id="q8K-at-5YQ"/>
+                <outlet property="latinNameLabel" destination="FY3-Oh-vzb" id="JFt-3p-sFm"/>
+                <outlet property="latinNameValueLabel" destination="nEv-DF-JvB" id="qgF-jo-T1o"/>
+                <outlet property="mainImageView" destination="fMC-UD-qtf" id="MDg-Nb-2QD"/>
+                <outlet property="nameLabel" destination="yCk-Kw-Qhr" id="eUk-KR-rXM"/>
+            </connections>
+            <point key="canvasLocation" x="58" y="475"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="slon" width="608" height="400"/>
+    </resources>
+</document>
