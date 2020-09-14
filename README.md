@@ -1,4 +1,4 @@
 # AnimalLexicon
-Animal lexicon for Prague Zoo
+Animal lexicon for Prague Zoo 2016
 
-Old project for my Bachelor thesis in 2016 written in Swift, MVC
+Old project for my Bachelor thesis written in Swift, MVC
